@@ -119,7 +119,11 @@
       {
         "width": 475,
         "height": 200,
-        "mark": {"type": "area", "line": true, "point": true},
+        "mark": {
+          "type": "area",
+          "line": {"color": "red", "opacity": 0.7},
+          "point": true
+          },
         "title": "Crimes in Malaysia",
         "transform": [
           {
@@ -142,7 +146,7 @@
             },
             "color": {
               "condition": {
-                "test": "datum.type == type_selection",
+                "test": "type_selection == datum.type || type_selection == 'all'",
                 "field": "type",
                 "type": "nominal",
                 "title": "Crime type"
