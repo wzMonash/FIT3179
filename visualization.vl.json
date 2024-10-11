@@ -103,7 +103,7 @@
               "color": {
                 "field": "total_crimes",
                 "type": "quantitative",
-                "scale": {"scheme": "plasma"},
+                "scale": {"scheme": "blues"},
                 "title": "Crimes"
               },
               "tooltip": [
@@ -130,8 +130,12 @@
             "filter": "datum.state == 'Malaysia' && datum.district == 'All' && datum.type != 'all'"
           },
           {
+            "calculate": "datum.type == 'causing_injury' ? 'Causing Injury' : datum.type == 'murder' ? 'Murder' : datum.type == 'rape' ? 'Rape' : datum.type == 'robbery_gang_armed' ? 'Grouped Armed Robbery' : datum.type == 'robbery_gang_unarmed' ? 'Grouped Unarmed Robbery' : datum.type == 'robbery_solo_armed' ? 'Solo Armed Robbery' : datum.type == 'robbery_solo_unarmed' ? 'Solo Unarmed Robbery' : datum.type == 'break_in' ? 'Break-in' : datum.type == 'theft_other' ? 'Theft (Other)' : datum.type == 'theft_vehicle_lorry' ? 'Theft (Lorry)' : datum.type == 'theft_vehicle_motorcar' ? 'Theft (Motorcar)' : datum.type == 'theft_vehicle_motorcycle' ? 'Theft (Motorcycle)' : datum.type",
+            "as": "crime_type_label"
+          },
+          {
             "aggregate": [{"op": "sum", "field": "crimes", "as": "total_crimes"}],
-            "groupby": ["date", "type"]
+            "groupby": ["date", "crime_type_label"]
           }
         ],
         "encoding": {
@@ -147,8 +151,9 @@
             "color": {
               "condition": {
                 "test": "type_selection == datum.type || type_selection == 'all'",
-                "field": "type",
+                "field": "crime_type_label",
                 "type": "nominal",
+                "scale": {"scheme": "set2"},
                 "title": "Crime type"
               },
               "value": "lightgray"
