@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "https://raw.githubusercontent.com/wzMonash/FIT3179/refs/heads/main/A2/cleaned_crime_district_year_only.csv"},
+  "data": {"url": "https://raw.githubusercontent.com/wzMonash/FIT3179/refs/heads/main/A2/combined_data.csv"},
   "params": [
     {
       "name": "year_selection",
@@ -40,7 +40,7 @@
       }
     }
   ],
-  "hconcat": [
+  "vconcat": [
     {
       "width": 600,
       "height": 400,
@@ -56,7 +56,7 @@
         },
         {
           "data": {
-            "url": "https://raw.githubusercontent.com/wzMonash/FIT3179/refs/heads/main/A2/cleaned_crime_district_year_only.csv"
+            "url": "https://raw.githubusercontent.com/wzMonash/FIT3179/refs/heads/main/A2/combined_data.csv"
           },
           "transform": [
             {
@@ -68,19 +68,7 @@
             },
             {
               "aggregate": [{"op": "sum", "field": "crimes", "as": "total_crimes"}],
-              "groupby": ["state"]
-            },
-                        {
-              "calculate": "datum.state + datum.date",
-              "as": "state_date_key"
-            },
-            {
-              "lookup": "state",
-              "from": {
-                "data": {"url": "https://raw.githubusercontent.com/wzMonash/FIT3179/refs/heads/main/A2/filtered_population_data.csv"},
-                "key": "state",
-                "fields": ["population", "date"]
-              }
+              "groupby": ["state", "date", "population"]
             },
             {
               "calculate": "datum.population > 0 ? (datum.total_crimes / datum.population) : 0",
@@ -116,8 +104,9 @@
             },
             "tooltip": [
               {"field": "state", "type": "nominal", "title": "State"},
-              {"field": "crimes_per_1000", "type": "quantitative", "format": ".2f", "title": "Crimes"},
-              {"field": "rank", "type": "quantitative", "title": "Rank"}
+              {"field": "crimes_per_1000", "type": "quantitative", "title": "Crimes"},
+              {"field": "rank", "type": "quantitative", "title": "Rank"},
+              {"field": "population", "type": "quantitative", "title": "Population (thousands)"}
             ]
           }
         }
@@ -174,5 +163,6 @@
         ]
       }
     }
-  ]
+  ],
+  "resolve": {"scale": {"color": "independent"}}
 }
