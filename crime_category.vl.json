@@ -1,0 +1,49 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/wzMonash/FIT3179/refs/heads/main/A2/combined_data.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.state == 'Malaysia' && datum.district == 'All' && datum.type == 'all'"
+    },
+    {
+      "calculate": "datum.category == 'property' ? 'Property' : datum.category == 'assault' ? 'Assault' : datum.category",
+      "as": "category_label"
+    },
+    {
+      "aggregate": [{"op": "sum", "field": "crimes", "as": "total_crimes"}],
+      "groupby": ["state", "date", "category_label"]
+    }
+  ],
+  "facet": {"field": "date", "type": "nominal", "header": {"title": null}},
+  "columns": 0,
+  "spec": {
+    "mark": "arc",
+    "encoding": {
+      "theta": {"field": "total_crimes", "type": "quantitative", "stack": true},
+      "color": {
+        "field": "category_label",
+        "type": "nominal",
+        "title": "Crime category",
+        "legend": {"orient": "bottom"}
+      },
+      "tooltip": [
+        {"field": "category_label", "type": "nominal", "title": "Category"},
+        {
+          "field": "total_crimes",
+          "type": "quantitative",
+          "title": "Number of crimes"
+        }
+      ]
+    },
+    "layer": [
+      {"mark": {"type": "arc", "outerRadius": 80}},
+      {
+        "mark": {"type": "text", "radius": 100},
+        "encoding": {"text": {"field": "category_label", "type": "nominal"}}
+      }
+    ]
+  },
+  "config": {}
+}
