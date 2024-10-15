@@ -16,10 +16,9 @@
       "groupby": ["state", "date", "category_label"]
     }
   ],
-  "facet": {"field": "date", "type": "nominal", "header": {"title": null}},
+  "facet": {"field": "date", "type": "nominal", "title": null},
   "columns": 0,
   "spec": {
-    "mark": "arc",
     "encoding": {
       "theta": {"field": "total_crimes", "type": "quantitative", "stack": true},
       "color": {
