@@ -104,7 +104,7 @@
             },
             "tooltip": [
               {"field": "state", "type": "nominal", "title": "State"},
-              {"field": "crimes_per_1000", "type": "quantitative", "title": "Crimes", "format": ".2f"},
+              {"field": "crimes_per_1000", "type": "quantitative", "title": "Crimes per 1000", "format": ".2f"},
               {"field": "rank", "type": "quantitative", "title": "Rank"},
               {"field": "population", "type": "quantitative", "title": "Population (thousands)"}
             ]
