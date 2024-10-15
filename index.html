@@ -17,12 +17,16 @@
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
         body {
             padding-left: 80px;
             padding-right: 80px;
         }
-        h2.title {
-            font-size: 3em;
+
+        h1.title {
+            font-family: "Merriweather", serif;
+            font-size: 2.5em;
             font-weight: bold;
             color: #333366;
             padding: 10px;
@@ -30,6 +34,12 @@
             text-align: center;
             border: 2px solid #333366;
         }
+
+        h2.title {
+            font-family: "Montserrat", sans-serif;
+            text-align: center;
+        }
+
         .vis-container {
             justify-content: center;
             align-items: center;
@@ -43,8 +53,10 @@
             font-size: 1.3em;
         }
 
-        .text {
-            font-size: medium;
+        p.text {
+            font-family: "Roboto", sans-serif;
+            font-weight: 300;
+            font-style: medium;
             padding-top: 20px;
             padding-bottom: 20px;
         }
@@ -73,6 +85,10 @@
             color: #FF7F00;
         }
 
+        .white {
+            color: white;  
+        }
+
         .italic {
             font-style: italic;
         }
@@ -85,6 +101,13 @@
             font-size: 1.2em
         }
 
+        .end {
+            text-align: center;
+            background-color: #333366;
+            border: 2px solid black;
+            padding: 20px;
+        }
+
     </style>
 
 </head>
@@ -93,9 +116,9 @@
 
     <div>
 
-        <h2 class="title">Statewide Crime Trends in Malaysia: A Comparative Analysis</h2>
+        <h1 class="title">Statewide Crime Trends in Malaysia: A Comparative Analysis</h2>
 
-        <h2><center>Malaysia's Crime Rate and Its Type Composition</center></h2>
+        <h2 class="title">Malaysia's Crime Rate and Its Type Composition</h2>
         
         <div>
             <div id="vis1" class="vis-container"></div>
@@ -113,7 +136,7 @@
 
         <hr style="border: 1px solid #ddd;">
 
-        <h2><center>Does population density affect the crime rate?</center></h2>
+        <h2 class="title">Does population density affect the crime rate?</h2>
 
         <div>
             <div id="vis2" class="vis-container"></div>
@@ -131,15 +154,46 @@
             As we can see from the scatterplots, population does affect the crime rate. But it's not the only potential factor.
         </p>
 
+        <hr style="border: 1px solid #ddd;">
+
+        <h2><center>Further breakdown of the crime composition</center></h2>
+
+        <div>
+            <div id="vis3" class="vis-container"></div>
+        </div>
+
+        <p class="text">
+            Observing the composition of the crime category breakdown, we can see that majority of the crimes committed are related
+            to <span class="bigger orange">Property</span>. This trend has remained the same over the year.
+        </p>
+
+        <hr style="border: 1px solid #ddd;">
+
+        <div class="end">
+            <p class="white">
+                Data obtained from: data.gov.my<br>
+                Population Link: <a href="https://data.gov.my/data-catalogue/population_state">
+                    <span class="white">Population by state</span></a><br>
+                Crime Link: <a href="https://data.gov.my/data-catalogue/crime_district">
+                    <span class="white">Crime by state</span>
+                </a>
+            </p>
+        </div>
+
     </div>
 
 
     <script type="text/javascript">
+
         var vis1 = "crime_choropleth_by_state.vl.json"
         vegaEmbed('#vis1', vis1);
 
-        var vis2 = "crime_vs_pop.vg.json"
+        var vis2 = "crime_vs_pop2.json"
         vegaEmbed('#vis2', vis2)
+
+        var vis3 = "crime_category.vl.json"
+        vegaEmbed('#vis3', vis3)
+
     </script>
 
     
