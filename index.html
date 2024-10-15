@@ -16,35 +16,129 @@
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
 
+    <style>
+        body {
+            padding-left: 80px;
+            padding-right: 80px;
+        }
+        h2.title {
+            font-size: 3em;
+            font-weight: bold;
+            color: #333366;
+            padding: 10px;
+            background-color: #f0f0f0;
+            text-align: center;
+            border: 2px solid #333366;
+        }
+        .vis-container {
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 40px;
+            overflow-x: auto;
+            width: 100%;
+        }
+
+        .emphasis {
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        .text {
+            font-size: medium;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .red {
+            color: red;
+        }
+
+        .blue {
+            color:rgb(27, 27, 245);
+        }
+
+        .green {
+            color: #4DAF4A;
+        }
+
+        .darkgreen {
+            color: #009E73;
+        }
+
+        .purple {
+            color: darkviolet;
+        }
+
+        .orange {
+            color: #FF7F00;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .bigger {
+            font-size: 1.2em
+        }
+
+    </style>
 
 </head>
 
 <body>
 
-    <div class="page">
+    <div>
 
-        <h2>Crimes in Malaysia By State</h2>
+        <h2 class="title">Statewide Crime Trends in Malaysia: A Comparative Analysis</h2>
+
+        <h2><center>Malaysia's Crime Rate and Its Type Composition</center></h2>
         
-        <div class="pure-g">
-            <div class="pure-u-1-1">
-                <div id="vis1" class="vis-container"></div>
-            </div>
+        <div>
+            <div id="vis1" class="vis-container"></div>
         </div>
 
-        <h2>Does population density affect the crime rate?</h2>
+        <p class="text">
+            The above visualisations show a choropleth map of the crime rates in each Malaysian 
+            states and an area chart that shows the composition of the total crimes.<br>
+            Based on the choropleth map, we can see that <span class="emphasis">Kuala Lumpur</span>
+            has the <span class="red italic bigger">highest crime index</span>.<br><br>
+            The area chart shows that the common crime committed in <span class="emphasis">2016</span> 
+            was <span class="bold bigger green">Motorcycle Theft</span>.
+        </p>
 
-        <div class="pure-g">
-            <div class="pure-u-1-1">
-                <div id="vis2" class="vis-container"></div>
-            </div>
+
+        <hr style="border: 1px solid #ddd;">
+
+        <h2><center>Does population density affect the crime rate?</center></h2>
+
+        <div>
+            <div id="vis2" class="vis-container"></div>
         </div>
+
+        <p class="text">
+            The above visualisations are multiple scatterplots of number of <span class="red bigger">crimes</span> versus 
+            <span class="purple bigger">population</span> from the year 2016 to 2022.<br><br>
+            We can see that in the year 2016, <span class="bigger darkgreen">Kuala Lumpur</span> 
+            has higher <span class="red bigger">number of crimes</span> for its 
+            relatively smaller population compared to Selangor. This may be due to urban poverty or the fact that Kuala Lumpur
+            is a popular place for tourism.
+            <br><br><span class="emphasis">However,</span> 
+            the crime rate for Kuala Lumpur has significantly dropped compared to its initial crime rate in 2016.<br>
+            As we can see from the scatterplots, population does affect the crime rate. But it's not the only potential factor.
+        </p>
+
     </div>
+
 
     <script type="text/javascript">
         var vis1 = "crime_choropleth_by_state.vl.json"
         vegaEmbed('#vis1', vis1);
 
-        var vis2 = "crime_vs_pop.vg.json"
+        var vis2 = "crime_vs_pop.json"
         vegaEmbed('#vis2', vis2)
     </script>
 
