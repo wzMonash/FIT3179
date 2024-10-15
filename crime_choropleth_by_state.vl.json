@@ -40,11 +40,11 @@
       }
     }
   ],
-  "vconcat": [
+  "hconcat": [
     {
       "width": 600,
       "height": 400,
-      "title": "Sum of Crimes by State in Malaysia",
+      "title": "",
       "projection": {"type": "mercator"},
       "layer": [
         {
@@ -100,11 +100,11 @@
               "field": "crimes_per_1000",
               "type": "quantitative",
               "scale": {"scheme": "blues"},
-              "title": "Crimes"
+              "title": "Crimes per 1000 people"
             },
             "tooltip": [
               {"field": "state", "type": "nominal", "title": "State"},
-              {"field": "crimes_per_1000", "type": "quantitative", "title": "Crimes"},
+              {"field": "crimes_per_1000", "type": "quantitative", "title": "Crimes", "format": ".2f"},
               {"field": "rank", "type": "quantitative", "title": "Rank"},
               {"field": "population", "type": "quantitative", "title": "Population (thousands)"}
             ]
@@ -115,13 +115,13 @@
     },
     {
       "width": 475,
-      "height": 200,
+      "height": 400,
       "mark": {
         "type": "area",
         "line": {"color": "red", "opacity": 0.7},
         "point": true
       },
-      "title": "Crimes in Malaysia",
+      "title": "",
       "transform": [
         {
           "filter": "datum.state == 'Malaysia' && datum.district == 'All' && datum.type != 'all'"
@@ -151,7 +151,24 @@
             "test": "type_selection == datum.crime_type_label || type_selection == 'all'",
             "field": "crime_type_label",
             "type": "nominal",
-            "scale": {"scheme": "set2"},
+            "scale": {"range": 
+              [
+                "#0072B2",
+                "#D55E00",
+                "#F0E442",
+                "#009E73",
+                "#CC79A7",
+                "#56B4E9",
+                "#E69F00",
+                "#999999",
+                "#E41A1C",
+                "#377EB8",
+                "#4DAF4A",
+                "#984EA3",
+                "#FF7F00",
+                "#FFFF33"
+              ]
+            },
             "title": "Crime type"
           },
           "value": "lightgray"
