@@ -31,13 +31,24 @@
             </div>
         </div>
 
+        <h2>Does population density affect the crime rate?</h2>
+
+        <div class="pure-g">
+            <div class="pure-u-1-1">
+                <div id="vis2" class="vis-container"></div>
+            </div>
+        </div>
     </div>
 
     <script type="text/javascript">
         var vis1 = "crime_choropleth_by_state.vl.json"
         vegaEmbed('#vis1', vis1);
+
+        var vis2 = "crime_vs_pop.vg.json.json"
+        vegaEmbed('#vis2', vis2)
     </script>
 
+    
 </body>
 
 </html>
