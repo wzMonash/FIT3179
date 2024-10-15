@@ -11,7 +11,7 @@
         "calculate": "datum.type == 'all' ? 'All' : datum.type == 'causing_injury' ? 'Causing Injury' : datum.type == 'murder' ? 'Murder' : datum.type == 'rape' ? 'Rape' : datum.type == 'robbery_gang_armed' ? 'Grouped Armed Robbery' : datum.type == 'robbery_gang_unarmed' ? 'Grouped Unarmed Robbery' : datum.type == 'robbery_solo_armed' ? 'Solo Armed Robbery' : datum.type == 'robbery_solo_unarmed' ? 'Solo Unarmed Robbery' : datum.type == 'break_in' ? 'Break-in' : datum.type == 'theft_other' ? 'Theft (Other)' : datum.type == 'theft_vehicle_lorry' ? 'Theft (Lorry)' : datum.type == 'theft_vehicle_motorcar' ? 'Theft (Motorcar)' : datum.type == 'theft_vehicle_motorcycle' ? 'Theft (Motorcycle)' : datum.type",
         "as": "crime_type_label"
       },
-      {"filter": "datum.state != 'Malaysia' && datum.district == 'All'"},
+      {"filter": "datum.state != 'Malaysia' && datum.district == 'All' && datum.crime_type_label == 'All'"},
       {
         "aggregate": [{"op": "sum", "field": "crimes", "as": "total_crimes"}],
         "groupby": ["state", "date", "population", "crime_type_label"]
